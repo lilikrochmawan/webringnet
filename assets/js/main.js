@@ -84,7 +84,10 @@ document.addEventListener('DOMContentLoaded', function () {
             let details = '';
             if (speed) details += '<span class="px-2.5 py-1 bg-sky-100 text-sky-800 rounded-full font-semibold text-xs">' + speed + '</span> ';
             if (fup) details += '<span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-full font-semibold text-xs">' + fup + '</span> ';
-            if (price) details += '<span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full font-semibold text-xs">Rp ' + price + '</span>';
+            if (price) {
+                const cleanPrice = String(price).replace(/^Rp\s*/i, '');
+                details += '<span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full font-semibold text-xs">Rp ' + cleanPrice + '</span>';
+            }
             modalPackageDetailsDisplay.innerHTML = details;
         }
 

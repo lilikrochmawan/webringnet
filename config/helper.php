@@ -57,12 +57,13 @@ function getFlash() {
 /**
  * Format Indonesian Rupiah
  */
-function formatRupiah($amount) {
+function formatRupiah($amount, $withPrefix = false) {
     $clean = preg_replace('/[^0-9]/', '', (string)$amount);
     if (!empty($clean)) {
-        return 'Rp ' . number_format((float)$clean, 0, ',', '.');
+        $formatted = number_format((float)$clean, 0, ',', '.');
+        return $withPrefix ? 'Rp ' . $formatted : $formatted;
     }
-    return $amount;
+    return preg_replace('/^Rp\s*/i', '', (string)$amount);
 }
 
 /**
